@@ -20,15 +20,19 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('/home') }}">Dashboard <span class="sr-only">(current)</span></a>
+                    <li class="nav-item {{ request()->is('admin/dashboard') || request()->is('user/dashboard') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/home') }}">Dashboard</a>
                     </li>
+                    @if(Auth::user()->role == 'admin' || Auth::user()->role == 'user')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Product</a>
+                        <a class="nav-link {{ request()->is('products') || request()->is('products/*') ? 'active' : '' }}" href="{{ route('products.index') }}">Product</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role == 'admin')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('categories.index') }}">Category</a>
+                        <a class="nav-link {{ request()->is('categories') || request()->is('categories/*') ? 'active' : '' }}" href="{{ route('categories.index') }}">Category</a>
                     </li>
+                    @endif
                 </ul>
                 <ul class="navbar-nav">
                     @guest
