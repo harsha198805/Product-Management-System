@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $productCount = Product::count();
-        $categoryCount = Category::count();
-        return view('home', compact('productCount','categoryCount'));
+        if (auth()->user()->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }else if (auth()->user()->role == 'user') {
+            return redirect()->route('user.dashboard');
+        }else{
+        return view('home');
+        }
     }
 }

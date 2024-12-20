@@ -10,6 +10,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
    
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
