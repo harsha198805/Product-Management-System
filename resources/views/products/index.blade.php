@@ -77,7 +77,7 @@
             @forelse ($products as $product)
                 <tr>
                     <td>{{ ++$i }}</td>
-                    <td><img src="{{ asset('uploads/products/'.$product->image)}}" width="100px"></td>
+                    <td><img src="{{ asset('uploads/products/'.$product->image)}}"  width="40" height="30"></td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->name }}</td>

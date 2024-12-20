@@ -50,7 +50,7 @@
             <label for="description" class="form-label"><strong>Description:</strong></label>
             <textarea 
                 class="form-control @error('description') is-invalid @enderror" 
-                style="height:150px" 
+                style="height:100px" 
                 name="description" 
                 id="description" 
                 placeholder="Description">{{ $product->description }}</textarea>
@@ -66,7 +66,7 @@
                 name="image" 
                 class="form-control @error('image') is-invalid @enderror" 
                 id="inputImage">
-            <img src="{{asset('uploads/products/'.$product->image)}}" width="300px">
+            <img src="{{asset('uploads/products/'.$product->image)}}"  width="150" height="130">
             @error('image')
                 <div class="form-text text-danger">{{ $message }}</div>
             @enderror
